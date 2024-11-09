@@ -5,170 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glimpse</title>
     <style>
-        /* Resetting default margins and padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body */
-        body {
-            background: url('https://images.pexels.com/photos/2098428/pexels-photo-2098428.jpeg') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Roboto', sans-serif;
-            color: #fff;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Container */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            padding: 50px;
-            text-align: center;
-        }
-
-        /* Header */
-        header h1 {
-            font-size: 4em;
-            font-weight: 700;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .social-links a {
-            text-decoration: none;
-            font-size: 1.2em;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            border: 2px solid #fff;
+        /* Existing styles here... */
+        
+        /* Music Bar Styling */
+        .music-bar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
             border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-        }
-
-        .social-icon {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* About Me Section */
-        #about-me {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 30px;
-            margin-bottom: 40px;
-            border-radius: 15px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        #about-me h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        #about-me p {
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-
-        /* Cards Section */
-        .card-section {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: rgba(0, 0, 0, 0.7);
+        .music-bar button {
+            background: none;
+            border: 2px solid #fff;
+            border-radius: 50%;
             color: #fff;
-            border-radius: 15px;
-            padding: 25px;
+            font-size: 1.2em;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .music-bar button:hover {
+            transform: scale(1.1);
+        }
+
+        .music-bar audio {
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
         }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
-        }
-
-        .card h3 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .card iframe {
-            width: 100%;
-            height: 250px;
-            border-radius: 10px;
-        }
-
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Glimpse</h1>
-        </header>
+        <!-- Existing sections (Header, Social Links, About Me, etc.) here... -->
 
-        <!-- Social Links Section -->
-        <section class="social-links">
-            <a href="https://soundcloud.com/musicbyglimpse" target="_blank">
-                <img src="https://img.icons8.com/material-outlined/24/ffffff/soundcloud.png" alt="SoundCloud" class="social-icon">
-                SoundCloud
-            </a>
-            <a href="https://www.youtube.com/@Glimpectual" target="_blank">
-                <img src="https://img.icons8.com/material-outlined/24/ffffff/youtube-play.png" alt="YouTube" class="social-icon">
-                YouTube
-            </a>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about-me">
-            <h2>About Me</h2>
-            <p>Hi, you can call me Glimpse. Sometimes I be makin' music and get demolished in Valorant. Just here to accomplish the lore of life.</p>
-        </section>
-
-        <!-- Card Section for YouTube Video -->
-        <section class="card-section">
-            <div class="card">
-                <h3>Featured Video</h3>
-                <iframe src="https://www.youtube.com/embed/hL33ThS92jM?si=2skFelyZr-F1jHeF" title="YouTube video" allowfullscreen></iframe>
-            </div>
+        <!-- Music Bar Section -->
+        <section class="music-bar">
+            <button id="prev">⏮️</button>
+            <audio id="audio-player" controls></audio>
+            <button id="next">⏭️</button>
         </section>
     </div>
+
+    <script>
+        // Array of SoundCloud track URLs
+        const tracks = [
+            "https://soundcloud.com/musicbyglimpse/goofy?si=6a3130b975084e6eb7bff1b06c5797c0&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
+            "https://soundcloud.com/musicbyglimpse/flute-melodies-3?si=134e73cc1fa241ada19f4f8095f90eca&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
+            "https://soundcloud.com/musicbyglimpse/gentle-breezes?si=fa7eb72b80a04c1887aef2b86db3e259&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
+            "https://soundcloud.com/musicbyglimpse/flute-melodies-2?si=170c93308599460cb8397447e7d5ec0a&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing",
+            "https://soundcloud.com/musicbyglimpse/flute-riffs?si=2b8a909c6bbf46f980e88f2771091298&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+        ];
+
+        let currentTrackIndex = 0;
+        const audioPlayer = document.getElementById("audio-player");
+        
+        // Function to load track
+        function loadTrack(index) {
+            audioPlayer.src = tracks[index];
+            audioPlayer.play();
+        }
+
+        // Initial load
+        loadTrack(currentTrackIndex);
+
+        // Previous and Next Buttons
+        document.getElementById("prev").addEventListener("click", () => {
+            currentTrackIndex = (currentTrackIndex > 0) ? currentTrackIndex - 1 : tracks.length - 1;
+            loadTrack(currentTrackIndex);
+        });
+
+        document.getElementById("next").addEventListener("click", () => {
+            currentTrackIndex = (currentTrackIndex < tracks.length - 1) ? currentTrackIndex + 1 : 0;
+            loadTrack(currentTrackIndex);
+        });
+    </script>
 </body>
 </html>
